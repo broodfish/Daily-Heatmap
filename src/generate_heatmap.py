@@ -244,5 +244,43 @@ def main():
     plt.savefig(output_path, bbox_inches='tight', pad_inches=0.2, transparent=True)
     print(f"Heatmap saved to {output_path}")
 
+    # Generate HTML with cache-busting timestamp
+    timestamp = int(datetime.now().timestamp())
+    html_content = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Heatmap</title>
+    <style>
+        body {{
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }}
+        img {{
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }}
+    </style>
+</head>
+<body>
+    <img src="heatmap.png?t={timestamp}" alt="Reading Heatmap">
+</body>
+</html>
+    """
+    
+    html_path = output_dir / "heatmap.html"
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_content.strip())
+    print(f"HTML wrapper saved to {html_path}")
+
 if __name__ == "__main__":
     main()

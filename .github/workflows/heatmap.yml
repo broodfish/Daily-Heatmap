@@ -37,4 +37,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: '🎨 Update reading heatmap via GitHub Actions'
-          file_pattern: 'public/*.png'
+          file_pattern: 'public/*.png public/*.html'

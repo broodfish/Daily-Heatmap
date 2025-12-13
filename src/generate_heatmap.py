@@ -219,8 +219,10 @@ def main():
         ax.add_patch(rect)
 
     # Set Aspect and Limits
-    ax.set_xlim(-1, total_weeks + 1)
-    ax.set_ylim(-1, 7.5)
+    # Tighten limits since we removed left-side day labels
+    ax.set_xlim(-0.5, total_weeks + 0.5)
+    # y=0 is bottom, y=7.5 is top (for month labels)
+    ax.set_ylim(-0.5, 8)
     ax.set_aspect('equal')
     ax.axis('off') # Hide axes lines/ticks
 
@@ -241,8 +243,8 @@ def main():
     pass
 
     output_path = output_dir / "heatmap.png"
-    # Increase DPI for better resolution on mobile/Retina screens
-    plt.savefig(output_path, bbox_inches='tight', pad_inches=0.2, transparent=True, dpi=300)
+    # Increase DPI and remove padding completely
+    plt.savefig(output_path, bbox_inches='tight', pad_inches=0, transparent=True, dpi=300)
     print(f"Heatmap saved to {output_path}")
 
     # Generate HTML with cache-busting timestamp

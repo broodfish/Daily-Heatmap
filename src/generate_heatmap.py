@@ -237,18 +237,8 @@ def main():
             ax.text(week_idx, 7.5, str(current_month), 
                     ha='left', va='center', fontsize=10, color='#666')
 
-    # Add Day Labels (Left)
-    # Mon, Wed, Fri or something? User wanted Mon-Sun specific?
-    # "最左有星期(中文)" -> All or some? Usually 1, 3, 5 or all?
-    # Let's put Mon, Wed, Fri, Sun or just standard
-    # User List: ['一', '二', '三', '四', '五', '六', '日']
-    # Mapping: Mon=6, Sun=0
-    day_labels = ['日', '六', '五', '四', '三', '二', '一']
-    # Y positions: 0, 1, 2, 3, 4, 5, 6
-    for i, label in enumerate(day_labels):
-        # Add text at x=-1
-        ax.text(-1.5, i + 0.5, label, 
-                ha='right', va='center', fontsize=9, color='#666')
+    # Add Day Labels (Left) - REMOVED per user request (font issues in CI)
+    pass
 
     output_path = output_dir / "heatmap.png"
     plt.savefig(output_path, bbox_inches='tight', pad_inches=0.2, transparent=True)

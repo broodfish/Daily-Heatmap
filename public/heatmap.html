@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reading Heatmap</title>
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            background: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            /* Allow effective centering */
             width: 100%;
-            overflow: hidden;
-            /* Prevent scrollbars from layout issues */
+            height: 100%;
+            background: transparent;
+            overflow: hidden; /* Hide default scrollbars first */
         }
-
+        .container {
+            width: 100%;
+            height: 100%;
+            overflow-x: auto; /* Allow horizontal scrolling */
+            overflow-y: hidden;
+            display: flex;
+            align-items: center; /* Vertically center */
+            /* Hide scrollbar for cleaner look in Notion if preferred, or keep it */
+            scrollbar-width: thin; 
+        }
         img {
-            max-width: 100%;
-            /* Responsive: shrink to fit container */
-            height: auto;
-            /* Maintain aspect ratio */
+            /* Fill vertical height of the container (Notion block) */
+            height: 90%; 
+            width: auto; /* Maintain aspect ratio */
+            max-width: none; /* Allow it to overflow horizontally */
             display: block;
-            object-fit: contain;
+            margin: 0 auto;
         }
-
-        /* Responsive adjustments for very small screens if needed */
+        /* Mobile optimization: make it bigger to be readable */
         @media (max-width: 480px) {
-            body {
-                align-items: flex-start;
-                /* Top align on mobile to avoid cutting off if height mismatch */
-                padding-top: 10px;
+            img {
+                height: 80%;
             }
         }
     </style>
 </head>
-
 <body>
-    <img src="heatmap.png?t=1765617795" alt="Reading Heatmap">
-</body>
+    <div class="container" id="scrollContainer">
+        <img src="heatmap.png?t=1765618348" alt="Reading Heatmap">
+    </div>
 
+    <script>
+        // Auto-scroll to the farthest right (Today)
+        window.onload = function() {
+            const container = document.getElementById('scrollContainer');
+            container.scrollLeft = container.scrollWidth;
+        };
+    </script>
+</body>
 </html>

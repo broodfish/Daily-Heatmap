@@ -1,0 +1,5 @@
+notion-client
+pandas
+matplotlib
+python-dotenv
+python-dotenv

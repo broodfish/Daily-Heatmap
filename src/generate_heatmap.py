@@ -261,13 +261,22 @@ def main():
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh; /* Allow effective centering */
+            width: 100%;
+            overflow: hidden; /* Prevent scrollbars from layout issues */
         }}
         img {{
-            max-width: 100%;
-            height: auto;
+            max-width: 100%;    /* Responsive: shrink to fit container */
+            height: auto;       /* Maintain aspect ratio */
             display: block;
+            object-fit: contain;
+        }}
+        /* Responsive adjustments for very small screens if needed */
+        @media (max-width: 480px) {{
+            body {{
+                align-items: flex-start; /* Top align on mobile to avoid cutting off if height mismatch */
+                padding-top: 10px;
+            }}
         }}
     </style>
 </head>

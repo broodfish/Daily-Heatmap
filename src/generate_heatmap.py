@@ -158,7 +158,7 @@ def main():
 
     # Custom Colors
     # 0: Gray, 1-4: Browns
-    COLORS = ['#ebedf0', '#f4d6b6', '#d9a773', '#bf7e44', '#8c5931']
+    COLORS = ['#ebedf0', '#D9BAAB', '#C69781', '#B37557', '#A0522D']
     def get_color(value):
         if value == 0: return COLORS[0]
         if value < 60: return COLORS[1]

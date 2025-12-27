@@ -263,7 +263,6 @@ def main():
             width: 100%;
             height: 100%;
             background: transparent;
-            overflow: hidden; /* Hide default scrollbars first */
         }}
         .container {{
             width: 100%;
@@ -272,8 +271,14 @@ def main():
             overflow-y: hidden;
             display: flex;
             align-items: center; /* Vertically center */
-            /* Hide scrollbar for cleaner look in Notion if preferred, or keep it */
-            scrollbar-width: thin; 
+            /* Firefox */
+            scrollbar-width: none;
+            /* IE & Edge */
+            -ms-overflow-style: none;
+        }}
+        .container::-webkit-scrollbar {{
+            /* Chrome, Safari, Opera */
+            display: none;
         }}
         img {{
             /* Fill vertical height of the container (Notion block) */
